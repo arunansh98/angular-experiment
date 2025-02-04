@@ -1,0 +1,11 @@
+<router-outlet></router-outlet>
+<button (click)="callAPI()">Call Dummy JSON API</button>
+<button (click)="unsubscribe()">Unsubscribe</button>
+<ng-container>
+  <div class="products">
+    <ng-container *ngFor="let product of products">
+      app component
+      <h1 appHighlight>Title is {{ product.title | lowercase }}</h1>
+    </ng-container>
+  </div>
+</ng-container>

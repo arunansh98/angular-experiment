@@ -1,0 +1,9 @@
+<p>add works!</p>
+<button (click)="callAPI()">Call Dummy JSON API</button>
+<ng-container>
+  <div class="products">
+    <ng-container *ngFor="let product of products">
+      <h1>Title is {{ product.title }}</h1>
+    </ng-container>
+  </div>
+</ng-container>
