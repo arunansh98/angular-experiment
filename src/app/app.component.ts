@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HighlightDirective } from './directives/highlight.directive';
-import { Observable, Subscription } from 'rxjs';
+import { map, Observable, of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,11 +26,13 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy{
   callAPI(){
     console.log('app component');
     
-    this.httpClient.get('https://dummyjson.com/products').subscribe(
+    this.httpClient.get('https://dummyjson.com/products')
+    .pipe(map((data :any) => data.products))
+    .subscribe(
       {
         next:(response : any) => {
           console.log({response});
-          this.products = response.products;
+          this.products = response;
         }
       }
     )
@@ -48,6 +50,13 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy{
         console.log(response);
       }
     })
+    let newObjs = of(1,2,3);
+    newObjs.subscribe(
+      {
+        next:(response:any) => console.log({response})
+        
+      }
+    )
   }
 
   ngDoCheck(){
